@@ -1,5 +1,5 @@
-from filelock import FileLock
 import json
+from filelock import FileLock
 
 def load_json(path):
     lock = FileLock(path + '.lock')
