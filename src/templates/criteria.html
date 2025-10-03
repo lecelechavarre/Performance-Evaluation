@@ -1,15 +1,25 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
-<h2>Criteria</h2>
-<ul>
-{% for c in criteria %}
-  <li>{{c.id}} - {{c.name}} (weight: {{c.weight}})</li>
-{% endfor %}
-</ul>
-<h3>Add Criteria</h3>
-<form method="post">
-  <label>Name</label><input name="name"><br>
-  <label>Weight</label><input name="weight" value="1.0"><br>
-  <button type="submit">Add</button>
-</form>
+<h3>Criteria</h3>
+<div class="card mb-3">
+  <div class="card-body">
+    <form method="post" class="row g-2">
+      <div class="col"><input class="form-control" name="name" placeholder="Criteria name" required></div>
+      <div class="col" style="max-width:140px"><input class="form-control" name="weight" placeholder="weight" value="1.0" required></div>
+      <div class="col-auto"><button class="btn btn-primary">Add</button></div>
+    </form>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <table class="table">
+      <thead><tr><th>ID</th><th>Name</th><th>Weight</th></tr></thead>
+      <tbody>
+      {% for c in criteria %}
+        <tr><td>{{c.id}}</td><td>{{c.name}}</td><td>{{c.weight}}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock %}
