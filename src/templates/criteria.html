@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Criteria</h2>
+<ul>
+{% for c in criteria %}
+  <li>{{c.id}} - {{c.name}} (weight: {{c.weight}})</li>
+{% endfor %}
+</ul>
+<h3>Add Criteria</h3>
+<form method="post">
+  <label>Name</label><input name="name"><br>
+  <label>Weight</label><input name="weight" value="1.0"><br>
+  <button type="submit">Add</button>
+</form>
+{% endblock %}

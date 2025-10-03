@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Performance Eval</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="{{ url_for('dashboard') }}">Dashboard</a> |
+      <a href="{{ url_for('users_list') }}">Users</a> |
+      <a href="{{ url_for('criteria_list') }}">Criteria</a> |
+      <a href="{{ url_for('evaluations_list') }}">Evaluations</a> |
+      <a href="{{ url_for('export_evals') }}">Export</a> |
+      {% if session.get('user_id') %}<a href="{{ url_for('logout') }}">Logout</a>{% endif %}
+    </nav>
+    <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class="flashes">
+          {% for cat, msg in messages %}
+            <li class="flash {{cat}}">{{ msg }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Evaluations</h2>
+<h3>New Evaluation</h3>
+<form method="post">
+  <label>Employee</label>
+  <select name="employee_id">
+    {% for u in users %}
+      <option value="{{u.id}}">{{u.username}} - {{u.full_name}}</option>
+    {% endfor %}
+  </select><br>
+  <label>Date</label><input name="date" value="{{''}}"><br>
+  {% for c in criteria %}
+    <label>{{c.name}} ({{c.id}})</label>
+    <input name="score_{{c.id}}" placeholder="1-5"><br>
+  {% endfor %}
+  <label>Comments</label><br><textarea name="comments"></textarea><br>
+  <button type="submit">Save</button>
+</form>
+<h3>Existing</h3>
+<table>
+  <tr><th>ID</th><th>Employee</th><th>Evaluator</th><th>Date</th><th>Scores</th><th>Comments</th></tr>
+  {% for ev in evaluations %}
+    <tr>
+      <td>{{ev.id}}</td>
+      <td>{{ev.employee_id}}</td>
+      <td>{{ev.evaluator_id}}</td>
+      <td>{{ev.date}}</td>
+      <td>{{ev.scores}}</td>
+      <td>{{ev.comments}}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}
