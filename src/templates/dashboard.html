@@ -1,5 +1,31 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
-<h2>Dashboard</h2>
-<p>Users: {{ users|length }} | Criteria: {{ criteria|length }} | Evaluations: {{ evaluations|length }}</p>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Welcome, {{ user.full_name or user.username }}</h5>
+        <p class="card-text">Role: <strong>{{ user.role }}</strong></p>
+        <p class="card-text">Quick stats: Users: {{ stats.users }}, Criteria: {{ stats.criteria }}, Evaluations: {{ stats.evaluations }}</p>
+      </div>
+    </div>
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Recent evaluations</h5>
+        <p class="card-text">Use the Evaluations page to add or view records.</p>
+        <a href="{{ url_for('evaluations_list') }}" class="btn btn-sm btn-primary">Manage Evaluations</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h6>Actions</h6>
+        <a class="btn btn-outline-primary btn-sm mb-2 w-100" href="{{ url_for('criteria_list') }}">Manage Criteria</a>
+        <a class="btn btn-outline-primary btn-sm mb-2 w-100" href="{{ url_for('evaluations_list') }}">Manage Evaluations</a>
+        <a class="btn btn-success btn-sm w-100" href="{{ url_for('export_evals') }}">Export Evaluations</a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
